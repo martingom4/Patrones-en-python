@@ -1,0 +1,3 @@
+[INFO] Este es un mensaje informativo.
+[WARNING] Este es un mensaje de advertencia.
+[ERROR] Este es un mensaje de error.
