@@ -1,19 +1,34 @@
 from abc import ABC, abstractmethod
 
-#producto abstracto
-
-class factoryCar(ABC):
+# Clases Abstractas y Concretas de Vehículos
+class Vehiculo(ABC):
     @abstractmethod
-    def createCar(self):
+    def descripcion(self):
         pass
 
-
-class gasolineCar(factoryCar):
+class AutoElectrico(Vehiculo):
     def __init__(self):
-        self.velocidad_maxima = 180
-        self.tipo_combustible = "Gasolina"
+        self.velocidad_maxima = 150
+        self.tipo_bateria = "Litio"
 
+    def descripcion(self):
+        return f"Auto eléctrico con batería {self.tipo_bateria}, velocidad máxima {self.velocidad_maxima} km/h"
 
-    def createCar(self):
-        return f"Velocidad Maxima: {self.velocidad_maxima} Tipo de Combustible: {self.tipo_combustible}"
+class AutoCombustion(Vehiculo):
+    def __init__(self):
+        self.velocidad_maxima = 200
+        self.tipo_motor = "Gasolina"
 
+    def descripcion(self):
+        return f"Auto de combustión con motor {self.tipo_motor}, velocidad máxima {self.velocidad_maxima} km/h"
+
+# Factory de Vehículos
+class VehiculoFactory:
+    @staticmethod
+    def crear_vehiculo(tipo, categoria):
+        if tipo == "auto" and categoria == "electrico":
+            return AutoElectrico()
+        elif tipo == "auto" and categoria == "combustion":
+            return AutoCombustion()
+        else:
+            raise ValueError(f"Tipo o categoría no válidos: {tipo}, {categoria}")
