@@ -44,6 +44,27 @@ class BuilderCoche(BuilderVehiculo):
     def agregar_audio_premium(self):
         self.vehiculo.agregar_pieza("Sistema de audio premium")
 
+# apartir de el mismo builder abstracto se pueden crear mas tipos de vehiculos con las piezas que el cliente le va a agregar
+
+class BuilderMoto(BuilderVehiculo):
+    def agregar_motor(self):
+        self.vehiculo.agregar_pieza("Motor de 2 cilindros")
+    def agregar_puertas(self):
+        self.vehiculo.agregar_pieza("0 puertas")
+    def agregar_llanta(self):
+        self.vehiculo.agregar_pieza("Llantas de 20 pulgadas")
+
+class BuilderBus(BuilderVehiculo):
+    def agregar_motor(self):
+        self.vehiculo.agregar_pieza("Motor de 8 cilindros")
+    def agregar_puertas(self):
+        self.vehiculo.agregar_pieza("2 puertas")
+    def agregar_llanta(self):
+        self.vehiculo.agregar_pieza("Llantas de 30 pulgadas")
+    def Agregar_capacidad(self):
+        self.vehiculo.agregar_pieza("Capacidad para 80 personas")
+
+
 '''se puede ver que no se retorna nada porque el Builder ya tiene un metodo que retorna el vehiculo con las piezas que se le agregaron ademas solo estamos agregando las piezas al vehiculo a traves de la clase Builder y no directamente al vehiculo como tal'''
 
 '''una vez que se tiene la clase Builder concreta se puede crear la clase Director que va a ser la encargada de construir el vehiculo con las piezas que el cliente le va a agregar'''
@@ -58,6 +79,16 @@ class Director:
         self.builder.agregar_puertas()
         self.builder.agregar_audio_premium()
         '''se llama a los metodos de la clase Builder para agregar las piezas al vehiculo segun lo que el cliente le va a agregar'''
+    def construir_moto(self):
+        self.builder.agregar_motor()
+        self.builder.agregar_puertas()
+        self.builder.agregar_llanta()
+    def contruir_bus(self):
+        self.builder.agregar_motor()
+        self.builder.agregar_puertas()
+        self.builder.agregar_llanta()
+        self.builder.Agregar_capacidad()
+
     def obtener_vehiculo(self):
         return self.builder.obtener_vehiculo() # se retorna el vehiculo con las piezas que se le agregaron
 
@@ -71,3 +102,17 @@ director = Director(builder) # se crea un objeto de la clase Director
 director.construir_vehiculo() # se llama al metodo de la clase Director para construir el vehiculo con las piezas que el cliente le va a agregar
 vehiculo = director.obtener_vehiculo() # se guarda el vehiculo con las piezas que se le agregaron
 print(vehiculo.especificaciones()) # se imprime el vehiculo con las piezas que se le agregaron
+
+
+builder = BuilderMoto() # se crea un objeto de la clase Builder concreta
+director = Director(builder)
+director.construir_moto()
+vehiculo = director.obtener_vehiculo()
+print(vehiculo.especificaciones())
+
+
+builder = BuilderBus()
+director = Director(builder)
+director.contruir_bus()
+vehiculo = director.obtener_vehiculo()
+print(vehiculo.especificaciones())
