@@ -64,6 +64,17 @@ class BuilderBus(BuilderVehiculo):
     def Agregar_capacidad(self):
         self.vehiculo.agregar_pieza("Capacidad para 80 personas")
 
+class BuilderCamioneta(BuilderVehiculo):
+    def agregar_motro(self):
+        self.vehiculo.agregar_pieza("Motor de 6 cilindros")
+    def agregar_puertas(self):
+        self.vehiculo.agregar_pieza("4 puertas")
+    def agregar_llantas(self):
+        self.vehiculo.agregar_pieza("Llantas de 25 pulgadas")
+    def agregar_caja(self):
+        self.vehiculo.agregar_pieza("Caja de 2 metros")
+
+
 
 '''se puede ver que no se retorna nada porque el Builder ya tiene un metodo que retorna el vehiculo con las piezas que se le agregaron ademas solo estamos agregando las piezas al vehiculo a traves de la clase Builder y no directamente al vehiculo como tal'''
 
@@ -88,6 +99,11 @@ class Director:
         self.builder.agregar_puertas()
         self.builder.agregar_llanta()
         self.builder.Agregar_capacidad()
+    def contruir_camioneta(self):
+        self.builder.agregar_motor()
+        self.builder.agregar_puertas()
+        self.builder.agregar_llantas()
+        self.builder.agregar_caja()
 
     def obtener_vehiculo(self):
         return self.builder.obtener_vehiculo() # se retorna el vehiculo con las piezas que se le agregaron
@@ -114,5 +130,12 @@ print(vehiculo.especificaciones())
 builder = BuilderBus()
 director = Director(builder)
 director.contruir_bus()
+vehiculo = director.obtener_vehiculo()
+print(vehiculo.especificaciones())
+
+
+builder = BuilderCamioneta()
+director = Director(builder)
+director.contruir_camioneta()
 vehiculo = director.obtener_vehiculo()
 print(vehiculo.especificaciones())
