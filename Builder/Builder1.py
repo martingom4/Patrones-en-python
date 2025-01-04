@@ -14,6 +14,7 @@ class Vehiculo: #clase base para los vehiculos
 
 '''una vez que se tiene la clase base se puede crear una clase Builder que va a ser la encargada de construir el vehiculo con las piezas que el cliente le va a agregar'''
 
+
 #primero sera la clase abstracta Builder
 
 class BuilderVehiculo:
@@ -61,7 +62,7 @@ class BuilderBus(BuilderVehiculo):
         self.vehiculo.agregar_pieza("2 puertas")
     def agregar_llanta(self):
         self.vehiculo.agregar_pieza("Llantas de 30 pulgadas")
-    def Agregar_capacidad(self):
+    def agregar_capacidad(self):
         self.vehiculo.agregar_pieza("Capacidad para 80 personas")
 
 class BuilderCamioneta(BuilderVehiculo):
@@ -113,29 +114,51 @@ class Director:
 
 '''una vez que se tiene la clase Director se puede crear el cliente que va a ser el encargado de construir el vehiculo con las piezas que el cliente le va a agregar'''
 
-builder = BuilderCoche() # se crea un objeto de la clase Builder concreta
-director = Director(builder) # se crea un objeto de la clase Director
-director.construir_vehiculo() # se llama al metodo de la clase Director para construir el vehiculo con las piezas que el cliente le va a agregar
-vehiculo = director.obtener_vehiculo() # se guarda el vehiculo con las piezas que se le agregaron
-print(vehiculo.especificaciones()) # se imprime el vehiculo con las piezas que se le agregaron
+
+class Director:
+    def __init__ (self, builder):
+        self.builder = builder
+
+    def construir_vehiculo(self,pasos):
+        for paso in pasos:
+            if hasattr(self.builder, paso):
+                getattr(self.builder, paso)()
+            else:
+                print(f"El metodo {paso} no esta disponible")
+    def obtener_vehiculo(self):
+        return self.builder.obtener_vehiculo()
+
+'''que es hassattr y getattr:
+hasattr: es una funcion que permite verificar si un objeto tiene un atributo o un metodo
+
+ejemplo de uso:
+class Vehiculo:
+    def __init__(self):
+        self.motor = "Motor 1.6L"
+
+auto = Vehiculo()
+print(hasattr(auto, 'motor'))  # True
+print(hasattr(auto, 'llantas'))  # False
+
+getattr: es una funcion que permite obtener un atributo o un metodo de un objeto
+
+ejemplo de uso:
+
+class Vehiculo:
+    def __init__(self):
+        self.motor = "Motor 1.6L"
+
+auto = Vehiculo()
+print(getattr(auto, 'motor'))  # Motor 1.6L
+print(getattr(auto, 'llantas', 'No definido'))  # No definido
 
 
-builder = BuilderMoto() # se crea un objeto de la clase Builder concreta
-director = Director(builder)
-director.construir_moto()
-vehiculo = director.obtener_vehiculo()
-print(vehiculo.especificaciones())
+'''
+
 
 
 builder = BuilderBus()
 director = Director(builder)
-director.contruir_bus()
-vehiculo = director.obtener_vehiculo()
-print(vehiculo.especificaciones())
-
-
-builder = BuilderCamioneta()
-director = Director(builder)
-director.contruir_camioneta()
+director.construir_vehiculo(["agregar_motor", "agregar_puertas", "agregar_llanta", "agregar_capacidad"])
 vehiculo = director.obtener_vehiculo()
 print(vehiculo.especificaciones())
