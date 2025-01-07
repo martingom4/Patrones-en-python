@@ -14,5 +14,11 @@ Valida que el tipo proporcionado sea válido. Si no lo es, lanza una excepción 
 
 
 '''
+from usuario import usuario
+class factory_usuario:
+    @staticmethod
+    def crear_usuario(tipo,nombre,email):
+        if tipo == "Persona":
+            return usuario(nombre,email,"Persona", limite_paquetes=5)
 
 

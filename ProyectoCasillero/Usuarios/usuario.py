@@ -10,4 +10,4 @@ class usuario:
     def __str__(self):
         return f"Nombre: {self.nombre}, Email: {self.email}, Tipo: {self.tipo}, Limite de paquetes: {self.limite_paquetes}"
 
-    
+
