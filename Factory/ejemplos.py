@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 # Producto Abstracto
 class Notificacion(ABC):
-    @abstractmethod
+    @abstractmethod #creamos una clase abstracta de la que se pueden derivar varias funcionalidades 
     def enviar(self, mensaje):
         pass
 
