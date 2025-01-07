@@ -6,7 +6,7 @@ class Vehiculo:
     def agregar_pieza(sefl, pieza):
         sefl.piezas.append(pieza)
 
-    def especficicaiones(sefl):
+    def especificaciones(sefl):
         return f"Vehiculo construido con {', '.join(sefl.piezas)}"
 
-    
+

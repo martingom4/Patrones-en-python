@@ -5,10 +5,10 @@ class builder_bus(builder_vehiculo):
     def agregar_motor(self):
         self.vehiculo.agregar_pieza("motor de bus 5000cc")
 
-    def agregar_puerta(self):
+    def agregar_puertas(self):
         self.vehiculo.agregar_pieza("4 puertas")
 
     def agregar_audio_premium(self):
         self.vehiculo.agregar_pieza("audio premium")
 
-        
+
