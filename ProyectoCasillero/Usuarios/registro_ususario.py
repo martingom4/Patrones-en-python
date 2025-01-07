@@ -26,6 +26,7 @@ class registro_usuario:
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
             cls._instance = super().__new__(cls, *args, **kwargs)
+            cls._instance.usuarios = []
         return cls._instance
 
     def agregar_usuario(self, usuario):

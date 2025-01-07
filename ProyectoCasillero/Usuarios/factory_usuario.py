@@ -14,11 +14,16 @@ Valida que el tipo proporcionado sea válido. Si no lo es, lanza una excepción 
 
 
 '''
-from usuario import usuario
+from Usuarios.usuario import usuario
+
 class factory_usuario:
     @staticmethod
-    def crear_usuario(tipo,nombre,email):
-        if tipo == "Persona":
-            return usuario(nombre,email,"Persona", limite_paquetes=5)
+    def crear_usuario(tipo, nombre, email):
+        if tipo == "personal":
+            return usuario(nombre, email, "personal", limite_paquetes=5)
+        elif tipo == "corporativo":
+            return usuario(nombre, email, "corporativo", limite_paquetes=50)
+        else:
+            raise ValueError(f"Tipo de usuario '{tipo}' no es válido")
 
 
