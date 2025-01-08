@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from paquete import paquete
+from ProyectoCasillero.paquetes import paquete
 '''
 Propósito: Crear diferentes configuraciones de paquetes.
 
