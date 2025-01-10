@@ -9,7 +9,7 @@ class paquetes:
         self.paquetes.append(paquetes)
 
     def especificaciones(self):
-        return f"El paqute contiene {','.join(self.paquetes )}" #esto lo que hace es juntar todo lo que tendra el paquete y lo separa por comas
+        return f"El paquete contiene: {', '.join(str(paquete) for paquete in self.paquetes)}" #esto lo que hace es juntar todo lo que tendra el paquete y lo separa por comas
 
 
 
