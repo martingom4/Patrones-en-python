@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ProyectoCasillero.paquetes import paquete
+from Builder.paquete import Paquete
 '''
 Propósito: Crear diferentes configuraciones de paquetes.
 
@@ -26,22 +26,23 @@ Frágil: Dimensiones normales, pero con un costo adicional por ser frágil.
 '''
 class builder_paquete(ABC):
     def __init__(self):
-        self.vehiculo = paquete() # creamos un objeto de tipo paquete que ya esta definido en el archivo paquete.py
+        self.paquete = Paquete() # creamos un objeto de tipo paquete que ya esta definido en el archivo paquete.py
     #aca podemos agregar los metodos que queramos para agregar los paquetes como agregar_dimensiones agregar_peso agregar_destino etc
 
     #metodos abstracto que se va a implementar en las clases hijas
     @abstractmethod
-    def configurar_dimensiones(self):
+    def dimensiones(self):
         pass
 
     @abstractmethod
-    def configurar_peso(self):
+    def peso(self):
         pass
 
     @abstractmethod
     def calcular_precio(self):
         pass
 
-
+    def obtener_paquete(self):
+        return self.paquete
 
 
