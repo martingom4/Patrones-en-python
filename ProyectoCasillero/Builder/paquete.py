@@ -27,3 +27,4 @@ class paquete:
     def __str__(self):
         return f"Nombre: {self.nombre}, Email: {self.email}, Tipo: {self.tipo}, Limite de paquetes: {self.limite_paquetes}"
 
+#entonces esto lo que hace es que crea un objeto de tipo paqute con los atributos que le pasamos en el constructor
